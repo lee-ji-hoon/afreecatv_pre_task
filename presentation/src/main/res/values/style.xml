@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--  Text Style  -->
+    <style name="AfreecaTV_TextHeadline32">
+        <item name="android:textSize">32sp</item>
+    </style>
+
+    <style name="AfreecaTV_TextHeadLine24" parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="android:textColor">?attr/colorOnSurface</item>
+    </style>
+
+    <style name="AfreecaTV_TextHeadLine24.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="AfreecaTV_TextMedium16" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="android:textColor">?attr/colorOnSurface</item>
+    </style>
+
+</resources>
