@@ -20,8 +20,8 @@ class ConvertMapper<I : Any, O : Any>(
     private val inPropertiesByName by lazy { inType.memberProperties.associateBy { it.name } }
 
     private fun argFor(parameter: KParameter, data: I): Any? {
-        val value =
-            inPropertiesByName[parameter.name]?.get(data) ?: return targetParameterProviders[parameter.name]?.invoke()
+        val value = inPropertiesByName[parameter.name]?.get(data)
+            ?: return targetParameterProviders[parameter.name]?.invoke()
 
         return fieldMappers[parameter.name]?.invoke(value) ?: value
     }
@@ -31,6 +31,7 @@ class ConvertMapper<I : Any, O : Any>(
     }
 
     companion object {
-        inline operator fun <reified I : Any, reified O : Any> invoke() = ConvertMapper(I::class, O::class)
+        inline operator fun <reified I : Any, reified O : Any> invoke() =
+            ConvertMapper(I::class, O::class)
     }
 }

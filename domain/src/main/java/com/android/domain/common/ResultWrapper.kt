@@ -5,9 +5,19 @@ sealed class ResultWrapper<T>(
     val error: ErrorData? = null,
     val code: Int? = null
 ) {
-    class Success<T>(data: T, code: Int? = null) : ResultWrapper<T>(data = data, code = code)
-    class Failed<T>(error: ErrorData, data: T? = null) : ResultWrapper<T>(data = data, error = error)
-    class FetchLoading<T>(data: T? = null) : ResultWrapper<T>(data = data)
+    class Success<T>(
+        data: T,
+        code: Int? = null
+    ) : ResultWrapper<T>(data = data, code = code)
+
+    class Failed<T>(
+        error: ErrorData,
+        data: T? = null
+    ) : ResultWrapper<T>(data = data, error = error)
+
+    class FetchLoading<T>(
+        data: T? = null
+    ) : ResultWrapper<T>(data = data)
 
     override fun toString(): String {
         return when (this) {
