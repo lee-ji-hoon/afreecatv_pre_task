@@ -16,7 +16,7 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
 
-    private const val AFREECA_TV_URL = "https://openapi.afreecatv.com"
+    private const val AFREECA_TV_URL = "https://openapi.afreecatv.com/"
 
     private val moshi = Moshi.Builder()
         .addLast(KotlinJsonAdapterFactory())
