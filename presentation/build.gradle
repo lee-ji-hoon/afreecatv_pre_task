@@ -60,3 +60,7 @@ dependencies {
     // viewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$viewModel_version"
 }
+
+kapt {
+    correctErrorTypes true
+}
