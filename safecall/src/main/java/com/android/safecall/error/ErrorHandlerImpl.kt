@@ -5,7 +5,6 @@ import com.android.domain.common.ErrorData
 import com.android.domain.common.NoInternetException
 import com.android.domain.common.ServerConnectionException
 import retrofit2.HttpException
-import java.io.IOException
 import java.net.SocketException
 import java.net.UnknownHostException
 
@@ -14,10 +13,9 @@ abstract class ErrorHandlerImpl : ErrorHandler {
     override fun getError(throwable: Throwable): ErrorData {
         return when (throwable) {
             is UnknownHostException,
-            is ServerConnectionException -> ErrorData.Server(message = "${throwable.message}")
             is SocketException,
-            is NoInternetException,
-            is IOException -> ErrorData.Network
+            is NoInternetException -> ErrorData.Network
+            is ServerConnectionException -> ErrorData.Server(message = "${throwable.message}")
             is SQLiteException -> ErrorData.Database(message = "${throwable.message}")
             is HttpException -> ErrorData.Api(
                 message = throwable.response()?.message(),
