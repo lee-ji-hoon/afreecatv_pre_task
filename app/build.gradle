@@ -9,18 +9,13 @@ android {
     namespace 'com.android.afreecasampleapp'
     compileSdk 33
 
-    Properties properties = new Properties()
-    properties.load(project.rootProject.file('local.properties').newDataInputStream())
-    def apiIdKey = properties.getProperty('client_id') ?: ""
-
     defaultConfig {
         applicationId "com.android.afreecasampleapp"
         minSdk 23
         targetSdk 31
         versionCode 1
         versionName "1.0"
-
-        buildConfigField "String", "CLIENT_ID", "\"$apiIdKey\""
+        
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 

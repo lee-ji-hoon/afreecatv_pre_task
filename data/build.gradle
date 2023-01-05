@@ -8,9 +8,14 @@ android {
     namespace 'com.android.data'
     compileSdk 33
 
+    Properties properties = new Properties()
+    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+    def apiIdKey = properties.getProperty('client_id') ?: ""
+
     defaultConfig {
         minSdk 23
         targetSdk 31
+        buildConfigField "String", "CLIENT_ID", "\"$apiIdKey\""
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
