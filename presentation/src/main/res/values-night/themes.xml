@@ -1,6 +1,6 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="Theme.AfreecaSampleApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.AfreecaSampleApp" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/afreeca_blue_200</item>
         <item name="colorPrimaryVariant">@color/afreeca_blue_700</item>
