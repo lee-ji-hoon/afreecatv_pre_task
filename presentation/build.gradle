@@ -62,6 +62,9 @@ dependencies {
 
     // viewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$viewModel_version"
+
+    // Timber
+    implementation 'com.jakewharton.timber:timber:5.0.1'
 }
 
 kapt {

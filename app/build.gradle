@@ -63,6 +63,9 @@ dependencies {
     implementation "com.squareup.moshi:moshi-kotlin:$moshi_version"
     implementation "com.squareup.moshi:moshi-adapters:$moshi_version"
     kapt("com.squareup.moshi:moshi-kotlin-codegen:$moshi_version")
+
+    // Timber
+    implementation 'com.jakewharton.timber:timber:5.0.1'
 }
 
 kapt {
