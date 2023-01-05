@@ -5,13 +5,13 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class BroadListData(
-    @field:Json(name = "broad") val broad: List<Broad>,
+    @field:Json(name = "broad") val broad: List<BroadData>,
     @field:Json(name = "page_no") val pageNo: Int,
     @field:Json(name = "time") val time: Int,
     @field:Json(name = "total_cnt") val totalCount: Int
 ) {
     @JsonClass(generateAdapter = true)
-    data class Broad(
+    data class BroadData(
         @field:Json(name = "broad_bps") val bps: String,
         @field:Json(name = "broad_cate_no") val categoryNo: String,
         @field:Json(name = "broad_grade") val grade: String,

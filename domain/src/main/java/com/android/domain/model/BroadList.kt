@@ -5,21 +5,21 @@ data class BroadList(
     val pageNo: Int,
     val time: Int,
     val totalCount: Int
-)
-
-data class Broad(
-    val bps: String,
-    val categoryNo: String,
-    val grade: String,
-    val number: String,
-    val resolution: String,
-    val startTime: String,
-    val thumbnail: String,
-    val title: String,
-    val isPassword: String,
-    val profileImage: String,
-    val totalViewCount: String,
-    val userId: String,
-    val userNickname: String,
-    val visitBroadType: String
-)
+) {
+    data class Broad(
+        val bps: String,
+        val categoryNo: String,
+        val grade: String,
+        val number: String,
+        val resolution: String,
+        val startTime: String,
+        val thumbnail: String,
+        val title: String,
+        val isPassword: String,
+        val profileImage: String,
+        val totalViewCount: String,
+        val userId: String,
+        val userNickname: String,
+        val visitBroadType: String
+    )
+}
