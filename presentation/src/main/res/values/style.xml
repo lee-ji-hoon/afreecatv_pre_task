@@ -18,4 +18,29 @@
         <item name="android:textColor">?attr/colorOnSurface</item>
     </style>
 
+    <style name="AfreecaTV_TextMedium16.Grey">
+        <item name="android:textColor">@color/grey</item>
+    </style>
+
+    <style name="AfreecaTV_TextSubtitle14" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="android:textColor">?attr/colorOnSurface</item>
+    </style>
+
+    <style name="AfreecaTV_Caption12" parent="TextAppearance.AppCompat.Caption">
+        <item name="android:textColor">?attr/colorOnSurface</item>
+    </style>
+
+    <style name="AfreecaTV_Caption12.Grey">
+        <item name="android:textColor">@color/grey</item>
+    </style>
+
+    <style name="AfreecaTV_Caption10">
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+    </style>
+
+    <style name="AfreecaTV_Caption10.Grey">
+        <item name="android:textColor">@color/grey</item>
+    </style>
+
 </resources>
