@@ -20,8 +20,8 @@
 
         <ImageView
             android:id="@+id/iv_thumbnail"
-            android:layout_width="200dp"
-            android:layout_height="150dp"
+            android:layout_width="180dp"
+            android:layout_height="120dp"
             android:contentDescription="@string/home_broad_thumbnail"
             android:scaleType="centerCrop"
             app:imageUrl="@{broad.thumbnail}"
@@ -37,7 +37,7 @@
             android:ellipsize="end"
             android:maxLines="2"
             android:text="@{broad.title}"
-            android:textAppearance="@style/AfreecaTV_TextSubtitle14.Grey"
+            android:textAppearance="@style/AfreecaTV_TextMedium16"
             app:layout_constraintEnd_toStartOf="@id/iv_more"
             app:layout_constraintStart_toEndOf="@id/iv_thumbnail"
             app:layout_constraintTop_toTopOf="@id/iv_thumbnail"

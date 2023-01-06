@@ -9,10 +9,12 @@ import com.android.presentation.databinding.FragmentHomeBinding
 import com.android.presentation.ui.common.BaseFragment
 import com.android.presentation.ui.common.UiState
 import com.android.presentation.util.extenstion.repeatOnStarted
+import com.android.presentation.util.extenstion.screenWidth
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import timber.log.Timber
+import kotlin.math.roundToInt
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
@@ -48,6 +50,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     private fun initViewPager(item: List<BroadCategory>) {
         binding.viewpagerBroad.adapter = BroadTabAdapter(this, item)
         TabLayoutMediator(binding.tabBoardCategory, binding.viewpagerBroad) { tab, position ->
+            tab.view.minimumWidth = (screenWidth * 0.22).roundToInt()
             tab.text = item[position].name
         }.attach()
     }
