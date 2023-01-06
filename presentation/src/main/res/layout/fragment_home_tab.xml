@@ -17,7 +17,6 @@
             android:id="@+id/rv_broad"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
             android:transitionGroup="true"
             tools:listitem="@layout/item_broad"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
