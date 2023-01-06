@@ -8,8 +8,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.presentation.R
 import com.android.presentation.databinding.FragmentHomeTabBinding
 import com.android.presentation.ui.common.BaseFragment
+import com.android.presentation.ui.common.UiState
 import com.android.presentation.util.Extras.KEY_CATEGORY
+import com.android.presentation.util.extenstion.repeatOnStarted
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 import timber.log.Timber
 
 @AndroidEntryPoint
@@ -40,6 +43,20 @@ class BroadTabFragment : BaseFragment<FragmentHomeTabBinding>(R.layout.fragment_
         binding.lifecycleOwner = viewLifecycleOwner
         binding.vm = viewModel
         categoryName?.let { viewModel.fetchBroadList(it) }
+        initViewModelObserve()
+    }
+
+    private fun initViewModelObserve() {
+        viewLifecycleOwner.repeatOnStarted {
+            viewModel.uiState.collectLatest { state ->
+                Timber.tag("TAG").d("${javaClass.simpleName} state -> $state")
+                when (state) {
+                    is UiState.Failure -> showSnackBar(state.message)
+                    is UiState.Success<*> -> Unit
+                    is UiState.Loading -> Unit
+                }
+            }
+        }
     }
 
     private fun initRecyclerViewScrollListener(
@@ -68,7 +85,7 @@ class BroadTabFragment : BaseFragment<FragmentHomeTabBinding>(R.layout.fragment_
     }
 
     companion object {
-        private const val DEFAULT_PAGING_FETCH_COUNT = 6
+        private const val DEFAULT_PAGING_FETCH_COUNT = 2
 
         fun newInstance(categoryName: String) =
             BroadTabFragment().apply {

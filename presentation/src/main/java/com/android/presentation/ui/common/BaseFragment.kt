@@ -11,8 +11,9 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 
-abstract class BaseFragment<T : ViewDataBinding>(@LayoutRes private val layoutId: Int) :
-    Fragment() {
+abstract class BaseFragment<T : ViewDataBinding>(
+    @LayoutRes private val layoutId: Int
+) : Fragment() {
 
     private var _binding: T? = null
     protected val binding get() = _binding!!

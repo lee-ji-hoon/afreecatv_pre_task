@@ -9,7 +9,7 @@ class FetchBroadListUseCase @Inject constructor(
     private val broadRepository: BroadRepository
 ) {
 
-    suspend operator fun invoke(categoryName: String): ResultWrapper<List<Broad>> {
-        return broadRepository.fetchBroadList(categoryName)
+    suspend operator fun invoke(categoryName: String, pageNumber: Int): ResultWrapper<List<Broad>> {
+        return broadRepository.fetchBroadList(categoryName, pageNumber)
     }
 }

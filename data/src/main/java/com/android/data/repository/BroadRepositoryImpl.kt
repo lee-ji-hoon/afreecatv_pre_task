@@ -11,8 +11,8 @@ class BroadRepositoryImpl @Inject constructor(
     private val remoteDataSource: BroadRemoteDataSource
 ) : BroadRepository {
 
-    override suspend fun fetchBroadList(categoryName: String): ResultWrapper<List<Broad>> {
-        return remoteDataSource.fetchBroadList(categoryName)
+    override suspend fun fetchBroadList(categoryName: String, pageNumber: Int): ResultWrapper<List<Broad>> {
+        return remoteDataSource.fetchBroadList(categoryName, pageNumber)
     }
 
     override suspend fun fetchBroadCategoryList(): ResultWrapper<List<BroadCategory>> {

@@ -6,7 +6,7 @@ import com.android.domain.model.BroadCategory
 
 interface BroadRemoteDataSource {
 
-    suspend fun fetchBroadList(categoryName: String): ResultWrapper<List<Broad>>
+    suspend fun fetchBroadList(categoryName: String, pageNumber: Int): ResultWrapper<List<Broad>>
 
     suspend fun fetchBrandCategoryList(): ResultWrapper<List<BroadCategory>>
 }

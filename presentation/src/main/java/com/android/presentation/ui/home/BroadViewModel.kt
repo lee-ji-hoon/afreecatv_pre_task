@@ -10,10 +10,10 @@ import com.android.presentation.ui.common.UiState
 import com.android.presentation.ui.common.asEventFlow
 import com.android.presentation.util.extenstion.manageResult
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -27,13 +27,22 @@ class BroadViewModel @Inject constructor(
     private val _uiState: MutableEventFlow<UiState> = MutableEventFlow()
     val uiState = _uiState.asEventFlow()
 
+    private var pageNumber = BASIC_SIZE
+    private var job: Job? = null
+
     fun fetchBroadList(categoryName: String) {
-        viewModelScope.launch {
-            fetchBroadListUseCase(categoryName).manageResult(_uiState)?.let { broadListData ->
-                Timber.tag("TAG").d("${javaClass.simpleName} data -> $broadListData")
-                val broadResult = broadListData.map { it.toUiModel() }
+        if (job != null && job?.isActive == true) return
+
+        job = viewModelScope.launch {
+            fetchBroadListUseCase(categoryName, pageNumber).manageResult(_uiState)?.let { data ->
+                val broadResult = data.map { it.toUiModel() }
                 _broadList.value = _broadList.value?.plus(broadResult) ?: broadResult
+                pageNumber++
             }
         }
+    }
+
+    companion object {
+        private const val BASIC_SIZE = 1
     }
 }

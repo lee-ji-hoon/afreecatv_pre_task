@@ -14,8 +14,16 @@ class BrodRemoteDataSourceImpl @Inject constructor(
     private val apiService: NetworkApiService
 ) : BroadRemoteDataSource, SafeApi() {
 
-    override suspend fun fetchBroadList(categoryName: String): ResultWrapper<List<Broad>> = getSafe(
-        remoteFetch = { apiService.fetchBroadList(categoryName = categoryName) },
+    override suspend fun fetchBroadList(
+        categoryName: String,
+        pageNumber: Int
+    ): ResultWrapper<List<Broad>> = getSafe(
+        remoteFetch = {
+            apiService.fetchBroadList(
+                categoryName = categoryName,
+                pageNumber = pageNumber
+            )
+        },
         mapping = { response ->
             response.broad.map {
                 ConvertMapper<BroadData, Broad>()(
