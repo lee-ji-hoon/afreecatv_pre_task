@@ -29,7 +29,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     private fun initViewModelObserve() {
         viewLifecycleOwner.repeatOnStarted {
             viewModel.uiState.collectLatest { state ->
-                Timber.tag("TAG").d("${javaClass.simpleName} state -> $state")
                 when (state) {
                     is UiState.Failure -> showSnackBar(state.message)
                     is UiState.Success<*> -> Unit
@@ -49,7 +48,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
     private fun initViewPager(item: List<BroadCategory>) {
         binding.viewpagerBroad.adapter = BroadTabAdapter(this, item)
-        Timber.tag("TAG").d("${javaClass.simpleName} screen ${screenWidth * 0.3}")
         TabLayoutMediator(binding.tabBoardCategory, binding.viewpagerBroad) { tab, position ->
             tab.view.minimumWidth = (screenWidth * 0.22).roundToInt()
             tab.text = item[position].name
