@@ -10,6 +10,7 @@ buildscript {
         coroutines_version = "1.6.4"
         viewModel_version = "2.5.1"
         hilt_inject_version = "1"
+        lottie_version = "5.2.0"
     }
 
     dependencies {
