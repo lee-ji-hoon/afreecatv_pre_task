@@ -49,6 +49,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
     private fun initViewPager(item: List<BroadCategory>) {
         binding.viewpagerBroad.adapter = BroadTabAdapter(this, item)
+        Timber.tag("TAG").d("${javaClass.simpleName} screen ${screenWidth * 0.3}")
         TabLayoutMediator(binding.tabBoardCategory, binding.viewpagerBroad) { tab, position ->
             tab.view.minimumWidth = (screenWidth * 0.22).roundToInt()
             tab.text = item[position].name
