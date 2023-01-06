@@ -26,6 +26,10 @@
         <item name="android:textColor">?attr/colorOnSurface</item>
     </style>
 
+    <style name="AfreecaTV_TextSubtitle14.Grey">
+        <item name="android:textColor">@color/grey</item>
+    </style>
+
     <style name="AfreecaTV_Caption12" parent="TextAppearance.AppCompat.Caption">
         <item name="android:textColor">?attr/colorOnSurface</item>
     </style>
