@@ -2,6 +2,7 @@ package com.android.presentation.ui.home
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -51,9 +52,16 @@ class BroadTabFragment : BaseFragment<FragmentHomeTabBinding>(R.layout.fragment_
             viewModel.uiState.collectLatest { state ->
                 Timber.tag("TAG").d("${javaClass.simpleName} state -> $state")
                 when (state) {
-                    is UiState.Failure -> showSnackBar(state.message)
-                    is UiState.Success<*> -> Unit
-                    is UiState.Loading -> Unit
+                    is UiState.Failure -> {
+                        showSnackBar(state.message)
+                        showProgressbar(false)
+                    }
+                    is UiState.Loading -> showProgressbar(true)
+                    is UiState.Success<*> -> showProgressbar(false)
+                    is UiState.EmptyResult -> {
+                        showLottie()
+                        showProgressbar(false)
+                    }
                 }
             }
         }
@@ -84,8 +92,17 @@ class BroadTabFragment : BaseFragment<FragmentHomeTabBinding>(R.layout.fragment_
         })
     }
 
+    private fun showLottie() {
+        binding.groupEmptyResult.isVisible = true
+        binding.lottie.playAnimation()
+    }
+
+    private fun showProgressbar(visible: Boolean) {
+        binding.pbPaging.isVisible = visible
+    }
+
     companion object {
-        private const val DEFAULT_PAGING_FETCH_COUNT = 2
+        private const val DEFAULT_PAGING_FETCH_COUNT = 4
 
         fun newInstance(categoryName: String) =
             BroadTabFragment().apply {

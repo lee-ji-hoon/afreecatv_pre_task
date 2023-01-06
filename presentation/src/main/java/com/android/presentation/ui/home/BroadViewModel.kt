@@ -34,7 +34,13 @@ class BroadViewModel @Inject constructor(
         if (job != null && job?.isActive == true) return
 
         job = viewModelScope.launch {
+            _uiState.emit(UiState.Loading)
             fetchBroadListUseCase(categoryName, pageNumber).manageResult(_uiState)?.let { data ->
+                if (data.isEmpty() && broadList.value.isNullOrEmpty()) {
+                    _uiState.emit(UiState.EmptyResult)
+                } else {
+                    _uiState.emit(UiState.Success(Unit))
+                }
                 val broadResult = data.map { it.toUiModel() }
                 _broadList.value = _broadList.value?.plus(broadResult) ?: broadResult
                 pageNumber++
