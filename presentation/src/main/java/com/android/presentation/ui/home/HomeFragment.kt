@@ -32,6 +32,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
                     is UiState.Failure -> showSnackBar(state.message)
                     is UiState.Success<*> -> Unit
                     is UiState.Loading -> Unit
+                    is UiState.EmptyResult -> Unit
                 }
             }
         }
