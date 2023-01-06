@@ -1,12 +1,12 @@
 package com.android.data.datasource
 
 import com.android.domain.common.ResultWrapper
+import com.android.domain.model.Broad
 import com.android.domain.model.BroadCategory
-import com.android.domain.model.BroadList
 
 interface BroadRemoteDataSource {
 
-    suspend fun fetchBroadList(): ResultWrapper<BroadList>
+    suspend fun fetchBroadList(categoryName: String, pageNumber: Int): ResultWrapper<List<Broad>>
 
     suspend fun fetchBrandCategoryList(): ResultWrapper<List<BroadCategory>>
 }

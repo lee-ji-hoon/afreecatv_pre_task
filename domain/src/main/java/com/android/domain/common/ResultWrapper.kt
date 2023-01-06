@@ -27,3 +27,6 @@ sealed class ResultWrapper<T>(
         }
     }
 }
+
+val ResultWrapper<*>.succeeded
+    get() = this is ResultWrapper.Success && data != null

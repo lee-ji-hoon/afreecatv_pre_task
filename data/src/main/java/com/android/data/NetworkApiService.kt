@@ -11,6 +11,7 @@ interface NetworkApiService {
     @GET("broad/list")
     suspend fun fetchBroadList(
         @Query("client_id") clientId: String = BuildConfig.CLIENT_ID,
+        @Query("select_value") categoryName: String,
         @Query("page_no") pageNumber: Int = 1
     ): Response<BroadListData>
 

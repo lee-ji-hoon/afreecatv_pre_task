@@ -31,6 +31,9 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    buildFeatures {
+        dataBinding = true
+    }
 }
 
 dependencies {
@@ -59,6 +62,12 @@ dependencies {
 
     // viewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$viewModel_version"
+
+    // Timber
+    implementation 'com.jakewharton.timber:timber:5.0.1'
+
+    // Lottie
+    implementation "com.airbnb.android:lottie:$lottie_version"
 }
 
 kapt {
