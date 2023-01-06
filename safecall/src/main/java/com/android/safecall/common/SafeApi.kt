@@ -10,9 +10,7 @@ abstract class SafeApi : ErrorHandlerImpl() {
     override suspend fun <ResultType, RequestType> getSafe(
         remoteFetch: suspend () -> Response<RequestType>,
         mapping: (RequestType) -> ResultType
-    ): ResultWrapper<ResultType> = handleResponse({
-        remoteFetch()
-    }, mapping)
+    ): ResultWrapper<ResultType> = handleResponse({ remoteFetch() }, mapping)
 
     private suspend fun <RequestType, ResultType> handleResponse(
         call: suspend () -> Response<RequestType>,

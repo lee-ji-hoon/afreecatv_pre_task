@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="broad"
+            type="com.android.presentation.model.BroadUiModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,25 +20,29 @@
             android:id="@+id/iv_thumbnail"
             android:layout_width="200dp"
             android:layout_height="150dp"
-            android:background="@color/afreeca_blue_500"
             android:contentDescription="@string/home_broad_thumbnail"
+            android:scaleType="centerCrop"
+            app:imageUrl="@{broad.thumbnail}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@drawable/ic_launcher_background" />
 
         <TextView
             android:id="@+id/tv_title"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:ellipsize="end"
             android:maxLines="2"
-            android:textAppearance="@style/AfreecaTV_TextMedium16.Grey"
+            android:text="@{broad.title}"
+            android:textAppearance="@style/AfreecaTV_TextSubtitle14.Grey"
+            app:layout_constraintEnd_toStartOf="@id/iv_more"
             app:layout_constraintStart_toEndOf="@id/iv_thumbnail"
             app:layout_constraintTop_toTopOf="@id/iv_thumbnail"
             tools:text="백숙 먹방" />
 
         <ImageView
+            android:id="@+id/iv_more"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/ic_more_r24"
@@ -51,6 +58,7 @@
             android:background="@drawable/background_circle_r28"
             android:contentDescription="@string/home_broad_profile_image"
             android:scaleType="centerCrop"
+            app:circleImageUrl="@{broad.profileImage}"
             app:layout_constraintStart_toStartOf="@id/tv_title"
             app:layout_constraintTop_toBottomOf="@id/tv_title"
             tools:src="@drawable/ic_launcher_background" />
@@ -60,6 +68,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
+            android:text="@{broad.userNickname}"
             android:textAppearance="@style/AfreecaTV_Caption12.Grey"
             app:layout_constraintStart_toEndOf="@id/iv_bg_profile"
             app:layout_constraintTop_toTopOf="@id/iv_bg_profile"
@@ -79,10 +88,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
+            android:text="@{broad.totalViewCount}"
             android:textAppearance="@style/AfreecaTV_Caption10.Grey"
+            app:layout_constraintBottom_toBottomOf="@id/iv_viewers"
             app:layout_constraintStart_toEndOf="@id/iv_viewers"
             app:layout_constraintTop_toTopOf="@id/iv_viewers"
-            app:layout_constraintBottom_toBottomOf="@id/iv_viewers"
             tools:text="100" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

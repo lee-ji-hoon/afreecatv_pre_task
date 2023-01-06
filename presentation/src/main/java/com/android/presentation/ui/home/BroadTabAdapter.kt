@@ -12,6 +12,6 @@ class BroadTabAdapter(
     override fun getItemCount(): Int = item.count()
 
     override fun createFragment(position: Int): Fragment {
-        return BroadTabFragment()
+        return BroadTabFragment.newInstance(item[position].number)
     }
 }
