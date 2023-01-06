@@ -15,7 +15,8 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="12dp"
         android:layout_marginTop="12dp"
-        android:layout_marginBottom="6dp">
+        android:layout_marginBottom="6dp"
+        android:background="@drawable/background_ripple_grey">
 
         <ImageView
             android:id="@+id/iv_thumbnail"
@@ -56,7 +57,7 @@
             android:layout_width="28dp"
             android:layout_height="28dp"
             android:layout_marginTop="8dp"
-            android:background="@drawable/background_circle_r28"
+            android:background="@drawable/background_circle_blue_r28"
             android:contentDescription="@string/home_broad_profile_image"
             android:scaleType="centerCrop"
             app:circleImageUrl="@{broad.profileImage}"

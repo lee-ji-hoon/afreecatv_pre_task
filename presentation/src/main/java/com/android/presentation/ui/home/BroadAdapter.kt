@@ -9,7 +9,7 @@ import com.android.presentation.databinding.ItemBroadBinding
 import com.android.presentation.model.BroadUiModel
 
 class BroadAdapter(
-    private val callback: (BroadUiModel) -> Unit
+    private val onClick: (BroadUiModel) -> Unit
 ) : ListAdapter<BroadUiModel, BroadAdapter.ViewHolder>(BroadDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -18,7 +18,8 @@ class BroadAdapter(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
-            )
+            ),
+            onClick
         )
     }
 
@@ -27,11 +28,21 @@ class BroadAdapter(
     }
 
     class ViewHolder(
-        private val binding: ItemBroadBinding
+        private val binding: ItemBroadBinding,
+        private val onClick: (BroadUiModel) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
+
+        init {
+            binding.root.setOnClickListener {
+                binding.broad?.let { broad ->
+                    onClick(broad)
+                }
+            }
+        }
 
         fun bind(broadUiModel: BroadUiModel) {
             binding.broad = broadUiModel
+            binding.executePendingBindings()
         }
     }
 }
