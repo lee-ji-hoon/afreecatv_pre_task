@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- ImageView -->
+    <style name="RoundedMedium">
+        <item name="cornerSize">4dp</item>
+    </style>
+
     <!--  Text Style  -->
     <style name="AfreecaTV_TextHeadline32">
         <item name="android:textSize">32sp</item>
@@ -14,12 +19,24 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="AfreecaTV_TextMedium18" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textColor">?attr/colorOnSurface</item>
+    </style>
+
+    <style name="AfreecaTV_TextMedium18.Grey">
+        <item name="android:textColor">@color/grey</item>
+    </style>
+
     <style name="AfreecaTV_TextMedium16" parent="TextAppearance.MaterialComponents.Subtitle1">
         <item name="android:textColor">?attr/colorOnSurface</item>
     </style>
 
     <style name="AfreecaTV_TextMedium16.Grey">
         <item name="android:textColor">@color/grey</item>
+    </style>
+
+    <style name="AfreecaTV_TextMedium16.Blue100">
+        <item name="android:textColor">@color/afreeca_blue_100</item>
     </style>
 
     <style name="AfreecaTV_TextSubtitle14" parent="TextAppearance.MaterialComponents.Body2">
@@ -30,6 +47,10 @@
         <item name="android:textColor">@color/grey</item>
     </style>
 
+    <style name="AfreecaTV_TextSubtitle14.White">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
     <style name="AfreecaTV_Caption12" parent="TextAppearance.AppCompat.Caption">
         <item name="android:textColor">?attr/colorOnSurface</item>
     </style>
@@ -37,14 +58,4 @@
     <style name="AfreecaTV_Caption12.Grey">
         <item name="android:textColor">@color/grey</item>
     </style>
-
-    <style name="AfreecaTV_Caption10">
-        <item name="android:textSize">10sp</item>
-        <item name="android:textColor">?attr/colorOnSurface</item>
-    </style>
-
-    <style name="AfreecaTV_Caption10.Grey">
-        <item name="android:textColor">@color/grey</item>
-    </style>
-
 </resources>
