@@ -71,4 +71,13 @@
     <style name="AfreecaTV_Caption12.Grey">
         <item name="android:textColor">@color/grey</item>
     </style>
+
+    <!-- Component -->
+    <style name="AfreecaTV.Component.Toolbar" parent="Widget.MaterialComponents.Toolbar">
+        <item name="titleTextColor">?attr/colorOnPrimary</item>
+    </style>
+
+    <style name="AfreecaTV.Actionbar" parent="Widget.AppCompat.Toolbar.Button.Navigation">
+        <item name="colorControlNormal">@color/white</item>
+    </style>
 </resources>
