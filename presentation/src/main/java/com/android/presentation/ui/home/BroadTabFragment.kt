@@ -2,6 +2,8 @@ package com.android.presentation.ui.home
 
 import android.os.Bundle
 import android.view.View
+import android.widget.PopupMenu
+import androidx.core.view.get
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -22,7 +24,9 @@ class BroadTabFragment : BaseFragment<FragmentHomeTabBinding>(R.layout.fragment_
 
     private val categoryName: String? by lazy { arguments?.getString(KEY_CATEGORY) }
     private val viewModel: BroadViewModel by viewModels()
-    private val broadAdapter = BroadAdapter { broad ->
+    private val broadAdapter = BroadAdapter({
+        performOptionsMenuClick(it)
+    }) { broad ->
         val action = HomeFragmentDirections.actionHomeToBroadDetail(broad)
         findNavController().navigate(action)
     }
@@ -55,7 +59,7 @@ class BroadTabFragment : BaseFragment<FragmentHomeTabBinding>(R.layout.fragment_
                 Timber.tag("TAG").d("${javaClass.simpleName} state -> $state")
                 when (state) {
                     is UiState.Failure -> {
-                        showSnackBar(state.message)
+                        showSnackBar(getString(state.message))
                         showProgressbar(false)
                     }
                     is UiState.Loading -> showProgressbar(true)
@@ -109,6 +113,28 @@ class BroadTabFragment : BaseFragment<FragmentHomeTabBinding>(R.layout.fragment_
 
     private fun showProgressbar(visible: Boolean) {
         binding.pbPaging.isVisible = visible
+    }
+
+    private fun performOptionsMenuClick(position: Int) {
+        val broad = broadAdapter.currentList[position]
+        PopupMenu(
+            requireContext(),
+            binding.rvBroad[position].findViewById(R.id.tv_more)
+        ).apply {
+            inflate(R.menu.broad_menu_list)
+
+            setOnMenuItemClickListener { item ->
+                when (item?.itemId) {
+                    R.id.action_stations -> showSnackBar(getString(R.string.menu_move_stations, broad.userNickname))
+                    R.id.action_bookmark -> showSnackBar(getString(R.string.menu_bookmark, broad.userNickname))
+                    R.id.action_later -> showSnackBar(getString(R.string.menu_later))
+                    R.id.action_share -> showSnackBar(getString(R.string.menu_share))
+                    R.id.action_report -> showSnackBar(getString(R.string.menu_remport, broad.userNickname))
+                }
+                false
+            }
+            show()
+        }
     }
 
     companion object {
