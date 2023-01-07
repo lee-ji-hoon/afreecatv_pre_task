@@ -2,12 +2,13 @@ package com.android.presentation.ui.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.android.domain.common.succeeded
 import com.android.domain.model.BroadCategory
 import com.android.domain.usecase.FetchBroadCategoryUseCase
 import com.android.presentation.ui.common.MutableEventFlow
 import com.android.presentation.ui.common.UiState
 import com.android.presentation.ui.common.asEventFlow
-import com.android.presentation.util.extenstion.manageResult
+import com.android.presentation.util.extenstion.manageError
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -27,8 +28,13 @@ class HomeViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            fetchBroadCategoryUseCase().manageResult(_uiState)?.let {
-                _category.value = it
+            _uiState.emit(UiState.Loading)
+            val result = fetchBroadCategoryUseCase()
+            if (result.succeeded) {
+                _uiState.emit(UiState.Success(Unit))
+                _category.value = result.data
+            } else {
+                _uiState.emit(result.manageError())
             }
         }
     }

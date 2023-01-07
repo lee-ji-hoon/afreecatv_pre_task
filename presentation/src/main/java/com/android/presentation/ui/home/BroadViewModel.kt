@@ -2,13 +2,15 @@ package com.android.presentation.ui.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.android.domain.common.ResultWrapper
+import com.android.domain.common.succeeded
+import com.android.domain.model.Broad
 import com.android.domain.usecase.FetchBroadListUseCase
 import com.android.presentation.model.BroadUiModel
-import com.android.presentation.model.toUiModel
 import com.android.presentation.ui.common.MutableEventFlow
 import com.android.presentation.ui.common.UiState
 import com.android.presentation.ui.common.asEventFlow
-import com.android.presentation.util.extenstion.manageResult
+import com.android.presentation.util.extenstion.manageError
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancelAndJoin
@@ -36,16 +38,22 @@ class BroadViewModel @Inject constructor(
 
         job = viewModelScope.launch {
             _uiState.emit(UiState.Loading)
-            fetchBroadListUseCase(categoryName, pageNumber).manageResult(_uiState)?.let { data ->
-                if (data.isEmpty() && broadList.value.isNullOrEmpty()) {
-                    _uiState.emit(UiState.EmptyResult)
-                } else {
-                    pageNumber++
-                    _uiState.emit(UiState.Success(Unit))
-                }
-                val broadResult = data.map { it.toUiModel() }
-                _broadList.value = _broadList.value?.plus(broadResult) ?: broadResult
+            val result = fetchBroadListUseCase(categoryName, pageNumber)
+            if (result.succeeded) {
+                emitSuccessData(result)
+            } else {
+                _uiState.emit(result.manageError())
             }
+        }
+    }
+
+    private suspend fun emitSuccessData(result: ResultWrapper<List<Broad>>) {
+        val data = result.data
+        if (data.isNullOrEmpty() && broadList.value.isNullOrEmpty()) {
+            _uiState.emit(UiState.EmptyResult)
+        } else {
+            pageNumber++
+            _uiState.emit(UiState.Success(Unit))
         }
     }
 
