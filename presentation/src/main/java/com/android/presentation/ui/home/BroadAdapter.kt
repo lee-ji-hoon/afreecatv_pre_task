@@ -1,8 +1,6 @@
 package com.android.presentation.ui.home
 
-import android.view.ContextMenu
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -39,7 +37,7 @@ class BroadAdapter(
         private val binding: ItemBroadBinding,
         private val onClick: (BroadUiModel) -> Unit,
         private val optionsMenuClickListener: OptionsMenuClickListener
-    ) : RecyclerView.ViewHolder(binding.root), View.OnCreateContextMenuListener {
+    ) : RecyclerView.ViewHolder(binding.root) {
 
         init {
             binding.root.setOnClickListener {
@@ -56,17 +54,6 @@ class BroadAdapter(
                 optionsMenuClickListener.onOptionsMenuClicked(position)
             }
         }
-
-        override fun onCreateContextMenu(
-            menu: ContextMenu,
-            v: View,
-            menuInfo: ContextMenu.ContextMenuInfo?
-        ) {
-        }
-    }
-
-    override fun getItemCount(): Int {
-        return currentList.size
     }
 }
 
