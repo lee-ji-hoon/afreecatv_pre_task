@@ -11,11 +11,12 @@ buildscript {
         viewModel_version = "2.5.1"
         hilt_inject_version = "1"
         lottie_version = "5.2.0"
+        jupiter_version = "5.8.2"
     }
 
     dependencies {
         classpath "com.android.tools.build:gradle:4.2.1"
-        classpath "com.google.dagger:hilt-android-gradle-plugin:${hilt_version}"
+        classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_version"
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
     }
 }
