@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.presentation.R
@@ -22,8 +23,8 @@ class BroadTabFragment : BaseFragment<FragmentHomeTabBinding>(R.layout.fragment_
     private val categoryName: String? by lazy { arguments?.getString(KEY_CATEGORY) }
     private val viewModel: BroadViewModel by viewModels()
     private val broadAdapter = BroadAdapter { broad ->
-        Timber.tag("TAG").d("${javaClass.simpleName} item click -> $broad")
-        // TODO 이동
+        val action = HomeFragmentDirections.actionHomeToBroadDetail(broad)
+        findNavController().navigate(action)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

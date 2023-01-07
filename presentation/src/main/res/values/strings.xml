@@ -14,4 +14,6 @@
 
     <string name="category_empty_result">해당 카테고리에 방송이 현재 존재하지 않습니다.</string>
 
+    <string name="broad_detail_profile_image">방송 상세화면 BJ 프로필 이미지</string>
+
 </resources>
