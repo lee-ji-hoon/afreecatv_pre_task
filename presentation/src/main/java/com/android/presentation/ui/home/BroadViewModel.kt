@@ -7,6 +7,7 @@ import com.android.domain.common.succeeded
 import com.android.domain.model.Broad
 import com.android.domain.usecase.FetchBroadListUseCase
 import com.android.presentation.model.BroadUiModel
+import com.android.presentation.model.toUiModel
 import com.android.presentation.ui.common.MutableEventFlow
 import com.android.presentation.ui.common.UiState
 import com.android.presentation.ui.common.asEventFlow
@@ -30,7 +31,9 @@ class BroadViewModel @Inject constructor(
     private val _uiState: MutableEventFlow<UiState> = MutableEventFlow()
     val uiState = _uiState.asEventFlow()
 
-    private var pageNumber = BASIC_SIZE
+    var pageNumber = BASIC_SIZE
+        private set
+
     private var job: Job? = null
 
     fun fetchBroadList(categoryName: String) {
@@ -54,6 +57,10 @@ class BroadViewModel @Inject constructor(
         } else {
             pageNumber++
             _uiState.emit(UiState.Success(Unit))
+        }
+        data?.let { broadList ->
+            val broadResult = broadList.map { it.toUiModel() }
+            _broadList.value = _broadList.value?.plus(broadResult) ?: broadResult
         }
     }
 
