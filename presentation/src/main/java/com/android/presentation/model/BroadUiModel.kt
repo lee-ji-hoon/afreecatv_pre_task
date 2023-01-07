@@ -1,6 +1,7 @@
 package com.android.presentation.model
 
 import com.android.domain.model.Broad
+import java.io.Serializable
 
 data class BroadUiModel(
     val bps: String,
@@ -17,7 +18,7 @@ data class BroadUiModel(
     val userId: String,
     val userNickname: String,
     val visitBroadType: String
-)
+) : Serializable
 
 fun Broad.toUiModel(): BroadUiModel {
     return BroadUiModel(

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/action_stations"
+        android:title="@string/broad_menu_stations" />
+
+    <item
+        android:id="@+id/action_bookmark"
+        android:title="@string/broad_menu_bookmark" />
+
+    <item
+        android:id="@+id/action_later"
+        android:title="@string/broad_menu_later" />
+
+    <item
+        android:id="@+id/action_share"
+        android:title="@string/broad_menu_share" />
+
+    <item
+        android:id="@+id/action_report"
+        android:title="@string/broad_menu_report" />
+
+</menu>

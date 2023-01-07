@@ -9,8 +9,13 @@ import com.android.presentation.databinding.ItemBroadBinding
 import com.android.presentation.model.BroadUiModel
 
 class BroadAdapter(
+    private var optionsMenuClickListener: OptionsMenuClickListener,
     private val onClick: (BroadUiModel) -> Unit
 ) : ListAdapter<BroadUiModel, BroadAdapter.ViewHolder>(BroadDiffCallback()) {
+
+    fun interface OptionsMenuClickListener {
+        fun onOptionsMenuClicked(position: Int)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
@@ -19,17 +24,19 @@ class BroadAdapter(
                 parent,
                 false
             ),
-            onClick
+            onClick,
+            optionsMenuClickListener
         )
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(currentList[position])
+        holder.bind(currentList[position], position)
     }
 
     class ViewHolder(
         private val binding: ItemBroadBinding,
-        private val onClick: (BroadUiModel) -> Unit
+        private val onClick: (BroadUiModel) -> Unit,
+        private val optionsMenuClickListener: OptionsMenuClickListener
     ) : RecyclerView.ViewHolder(binding.root) {
 
         init {
@@ -40,9 +47,12 @@ class BroadAdapter(
             }
         }
 
-        fun bind(broadUiModel: BroadUiModel) {
+        fun bind(broadUiModel: BroadUiModel, position: Int) {
             binding.broad = broadUiModel
             binding.executePendingBindings()
+            binding.tvMore.setOnClickListener {
+                optionsMenuClickListener.onOptionsMenuClicked(position)
+            }
         }
     }
 }
