@@ -13,7 +13,6 @@ import com.android.presentation.util.extenstion.screenWidth
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
-import timber.log.Timber
 import kotlin.math.roundToInt
 
 @AndroidEntryPoint

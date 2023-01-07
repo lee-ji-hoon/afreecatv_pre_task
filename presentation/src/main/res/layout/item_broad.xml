@@ -16,18 +16,37 @@
         android:layout_marginHorizontal="12dp"
         android:layout_marginTop="12dp"
         android:layout_marginBottom="6dp"
-        android:background="@drawable/background_ripple_grey">
+        android:foreground="@drawable/background_ripple_grey">
 
-        <ImageView
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_half"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/iv_thumbnail"
-            android:layout_width="180dp"
-            android:layout_height="120dp"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
             android:contentDescription="@string/home_broad_thumbnail"
             android:scaleType="centerCrop"
             app:imageUrl="@{broad.thumbnail}"
+            app:layout_constraintEnd_toEndOf="@id/guideline_half"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/RoundedMedium"
             tools:src="@drawable/ic_launcher_background" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:text="@string/home_broad_live_text"
+            android:textAppearance="@style/AfreecaTV_TextSubtitle14.White"
+            app:drawableStartCompat="@drawable/background_circle_red_r8"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tv_title"
@@ -37,7 +56,7 @@
             android:ellipsize="end"
             android:maxLines="2"
             android:text="@{broad.title}"
-            android:textAppearance="@style/AfreecaTV_TextMedium16"
+            android:textAppearance="@style/AfreecaTV_TextMedium18.Grey"
             app:layout_constraintEnd_toStartOf="@id/iv_more"
             app:layout_constraintStart_toEndOf="@id/iv_thumbnail"
             app:layout_constraintTop_toTopOf="@id/iv_thumbnail"
@@ -54,13 +73,14 @@
 
         <ImageView
             android:id="@+id/iv_bg_profile"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/background_circle_blue_r28"
             android:contentDescription="@string/home_broad_profile_image"
             android:scaleType="centerCrop"
             app:circleImageUrl="@{broad.profileImage}"
+            app:clipToOutline="@{true}"
             app:layout_constraintStart_toStartOf="@id/tv_title"
             app:layout_constraintTop_toBottomOf="@id/tv_title"
             tools:src="@drawable/ic_launcher_background" />
@@ -71,7 +91,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:text="@{broad.userNickname}"
-            android:textAppearance="@style/AfreecaTV_Caption12.Grey"
+            android:textAppearance="@style/AfreecaTV_TextMedium16.Blue100"
             app:layout_constraintStart_toEndOf="@id/iv_bg_profile"
             app:layout_constraintTop_toTopOf="@id/iv_bg_profile"
             tools:text="비제이 이름" />
@@ -80,21 +100,21 @@
             android:id="@+id/iv_viewers"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/ic_viewers_r12"
+            android:background="@drawable/ic_viewers_r8"
             android:contentDescription="@string/home_broad_viewers_image"
-            app:layout_constraintStart_toStartOf="@id/tv_bg_name"
-            app:layout_constraintTop_toBottomOf="@id/tv_bg_name" />
+            app:layout_constraintBottom_toBottomOf="@id/iv_bg_profile"
+            app:layout_constraintStart_toStartOf="@id/tv_bg_name" />
 
         <TextView
             android:id="@+id/tv_viewers_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
-            android:text="@{broad.totalViewCount}"
-            android:textAppearance="@style/AfreecaTV_Caption10.Grey"
+            android:textAppearance="@style/AfreecaTV_TextSubtitle14.Grey"
             app:layout_constraintBottom_toBottomOf="@id/iv_viewers"
             app:layout_constraintStart_toEndOf="@id/iv_viewers"
             app:layout_constraintTop_toTopOf="@id/iv_viewers"
+            app:priceAmount="@{Integer.parseInt(broad.totalViewCount)}"
             tools:text="100" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

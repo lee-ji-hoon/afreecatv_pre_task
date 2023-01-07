@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="afreeca_blue_100">#526195</color>
     <color name="afreeca_blue_200">#FF1663be</color>
     <color name="afreeca_blue_500">#FF044fcf</color>
     <color name="afreeca_blue_700">#FF104a8e</color>
+    <color name="red">#FFFF0000</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>

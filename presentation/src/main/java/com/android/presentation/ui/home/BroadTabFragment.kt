@@ -34,6 +34,7 @@ class BroadTabFragment : BaseFragment<FragmentHomeTabBinding>(R.layout.fragment_
             recyclerView = binding.rvBroad,
             fetch = { categoryName?.let { viewModel.fetchBroadList(it) } }
         )
+        initRefreshSwipe()
     }
 
     private fun initAdapter() {
@@ -90,6 +91,14 @@ class BroadTabFragment : BaseFragment<FragmentHomeTabBinding>(R.layout.fragment_
             private fun endScrolled(lastVisible: Int, totalItemCount: Int) =
                 lastVisible >= totalItemCount - pagingFetchCount
         })
+    }
+
+    private fun initRefreshSwipe() {
+        val refreshLayout = binding.layoutRefresh
+        refreshLayout.setOnRefreshListener {
+            viewModel.refresh(categoryName)
+            refreshLayout.isRefreshing = false
+        }
     }
 
     private fun showLottie() {

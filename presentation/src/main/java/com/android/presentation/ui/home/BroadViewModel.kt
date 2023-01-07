@@ -11,6 +11,7 @@ import com.android.presentation.ui.common.asEventFlow
 import com.android.presentation.util.extenstion.manageResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.cancelAndJoin
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -39,12 +40,21 @@ class BroadViewModel @Inject constructor(
                 if (data.isEmpty() && broadList.value.isNullOrEmpty()) {
                     _uiState.emit(UiState.EmptyResult)
                 } else {
+                    pageNumber++
                     _uiState.emit(UiState.Success(Unit))
                 }
                 val broadResult = data.map { it.toUiModel() }
                 _broadList.value = _broadList.value?.plus(broadResult) ?: broadResult
-                pageNumber++
             }
+        }
+    }
+
+    fun refresh(categoryName: String?) {
+        viewModelScope.launch {
+            _broadList.value = emptyList()
+            pageNumber = BASIC_SIZE
+            job?.cancelAndJoin()
+            categoryName?.let { fetchBroadList(it) }
         }
     }
 
