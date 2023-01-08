@@ -41,7 +41,7 @@ API KEY를 local.properties 에서 관리
 
 ### 클린 아키텍처 적용
 
-<img src="https://user-images.githubusercontent.com/53300830/211145345-4a32b7e6-82d6-4c15-9fe2-e77f7293ed44.png" width="600" height="300">
+<img src="https://user-images.githubusercontent.com/53300830/211145345-4a32b7e6-82d6-4c15-9fe2-e77f7293ed44.png" width="800" height="400">
 
 ## ✍️ UnitTest 작성
 
@@ -137,7 +137,7 @@ fun fetchBroadFailedNetWorkError() = runTest {
 |<img width="315" alt="image" src="https://user-images.githubusercontent.com/53300830/211145761-ea614dbb-7d92-43fa-a2f2-ddecc48c6b2b.png">|<img width="313" alt="image" src="https://user-images.githubusercontent.com/53300830/211145754-f159ab78-78f9-4ce3-a70d-8caca6e0bf69.png">|
 
 
-## 🤔 성능 관련해서 고민했던 내용
+## 🤔 고민했던 내용들
 
 ### RecylcerView 페이지 요청 시점
 
@@ -273,4 +273,3 @@ override suspend fun fetchBrandCategoryList(): ResultWrapper<List<BroadCategory>
 
 - 어떤 요청을 할지 remoteFetch에 넣어주기만 하면 내부에서 ResultWrapper의 형태로 값 반환
 - API 요청 코드 중복 최소화
-
