@@ -3,6 +3,7 @@ package com.android.presentation.ui.home
 import android.os.Bundle
 import android.view.View
 import android.widget.PopupMenu
+import androidx.annotation.StringRes
 import androidx.core.view.get
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
@@ -62,10 +63,11 @@ class BroadTabFragment : BaseFragment<FragmentHomeTabBinding>(R.layout.fragment_
                         showSnackBar(getString(state.message))
                         showProgressbar(false)
                     }
+                    is UiState.NetworkFailure -> showLottie(R.string.error_network)
                     is UiState.Loading -> showProgressbar(true)
                     is UiState.Success<*> -> showProgressbar(false)
                     is UiState.EmptyResult -> {
-                        showLottie()
+                        showLottie(R.string.category_empty_result)
                         showProgressbar(false)
                     }
                 }
@@ -106,7 +108,8 @@ class BroadTabFragment : BaseFragment<FragmentHomeTabBinding>(R.layout.fragment_
         }
     }
 
-    private fun showLottie() {
+    private fun showLottie(@StringRes message: Int) {
+        binding.tvErrorMessage.text = getString(message)
         binding.groupEmptyResult.isVisible = true
         binding.lottie.playAnimation()
     }
@@ -125,11 +128,26 @@ class BroadTabFragment : BaseFragment<FragmentHomeTabBinding>(R.layout.fragment_
 
             setOnMenuItemClickListener { item ->
                 when (item?.itemId) {
-                    R.id.action_stations -> showSnackBar(getString(R.string.menu_move_stations, broad.userNickname))
-                    R.id.action_bookmark -> showSnackBar(getString(R.string.menu_bookmark, broad.userNickname))
+                    R.id.action_stations -> showSnackBar(
+                        getString(
+                            R.string.menu_move_stations,
+                            broad.userNickname
+                        )
+                    )
+                    R.id.action_bookmark -> showSnackBar(
+                        getString(
+                            R.string.menu_bookmark,
+                            broad.userNickname
+                        )
+                    )
                     R.id.action_later -> showSnackBar(getString(R.string.menu_later))
                     R.id.action_share -> showSnackBar(getString(R.string.menu_share))
-                    R.id.action_report -> showSnackBar(getString(R.string.menu_remport, broad.userNickname))
+                    R.id.action_report -> showSnackBar(
+                        getString(
+                            R.string.menu_report,
+                            broad.userNickname
+                        )
+                    )
                 }
                 false
             }
