@@ -106,7 +106,7 @@ fun fetchBroadSuccess() = runTest {
 ### 실패 테스트
 
 - 실패한 경우 mockk 객체 반환 값 지정
-- UiStae 상태가 Failed이고 PageNumber가 증가하지 않았는지 확인
+- UiState 상태가 Failed이고 PageNumber가 증가하지 않았는지 확인
 
 ```kotlin
 @Test
