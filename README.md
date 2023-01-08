@@ -270,3 +270,76 @@ override suspend fun fetchBrandCategoryList(): ResultWrapper<List<BroadCategory>
 - 어떤 요청을 할지 remoteFetch에 넣어주기만 하면 내부에서 ResultWrapper의 형태로 값 반환
 - API 요청 코드 중복 최소화
 
+## 🚀 트러블 슈팅
+
+### Circle + gif 구현
+
+- 아프리카 섬네일은 gif 즉 움짤로 오기도 한다.
+- 그렇기에 Thumbnail 이미지 로드 부분을 circle 형태로 구현을 했다.
+
+```kotlin
+imageUrl?.let {
+    view.load(it, imageLoader) {
+        transformations(CircleCropTransformation())
+    }
+}
+```
+
+- 이미지 뷰를 load 할 때 coil 라이브러리의 transformations의 CircleCropTransformation을 사용했습니다.
+- 근데 막상 구현한 모습이 gif 처럼 동작을 하지 않는 모습이였습니다.
+- 그래서 디버깅을 하면서 gif로 들어온게 맞는지 확인을 먼저 했습니다.
+
+### 해결 과정
+
+- 공식문서에서 권장하는 방법을 사용했습니다.
+- GifDecoder와 ImageDecoderDecoder를 사용했습니다.
+
+```kotlin
+val imageLoader = ImageLoader.Builder(view.context).components {
+    if (SDK_INT >= 28) {
+        add(ImageDecoderDecoder.Factory())
+    } else {
+        add(GifDecoder.Factory())
+    }
+}.build()
+```
+
+![image](https://user-images.githubusercontent.com/53300830/211201763-c4f823dd-6c3d-4dd9-9d42-5a10d60c1320.png)
+
+- 그 결과 위처럼 Gif로 인식한다는 것을 확인했고 구현 결과를 봤지만 gif로 동작을 안했습니다.
+- 그래서 CircleCropTransformation() 함수가 문제라고 판단이 돼서 해당 함수 내부를 봤습니다.
+
+```kotlin
+class CircleCropTransformation : Transformation {
+
+    override val cacheKey: String = javaClass.name
+
+    override suspend fun transform(input: Bitmap, size: Size): Bitmap {
+        val paint = Paint(Paint.ANTI_ALIAS_FLAG or Paint.FILTER_BITMAP_FLAG)
+
+        val minSize = min(input.width, input.height)
+        val radius = minSize / 2f
+        val output = createBitmap(minSize, minSize, input.safeConfig)
+        output.applyCanvas {
+            drawCircle(radius, radius, radius, paint)
+            paint.xfermode = PorterDuffXfermode(PorterDuff.Mode.SRC_IN)
+            drawBitmap(input, radius - input.width / 2f, radius - input.height / 2f, paint)
+        }
+
+        return output
+    }
+
+    override fun equals(other: Any?) = other is CircleCropTransformation
+
+    override fun hashCode() = javaClass.hashCode()
+}
+```
+
+- 내부 코드를 보니 Bitmap을 만들고 Circle을 만들고 Bitmap을 만드는 것으로 보인다.
+- 이 때 input이 들어가서 bitmap을 그리기 때문에 gif로 동작을 안한다고 판단
+
+### 해결 방법
+
+```xml
+app:clipToOutline="@{true}" // circle을 사용해야하는 ImageView에 해당 속성을 추가해서 해결을 했습니다! 
+```
