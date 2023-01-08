@@ -2,11 +2,11 @@ package com.android.presentation.ui.home
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.android.domain.model.BroadCategory
+import com.android.presentation.model.BroadCategoryUiModel
 
 class BroadTabAdapter(
     fragment: Fragment,
-    private val item: List<BroadCategory>
+    private val item: List<BroadCategoryUiModel>
 ) : FragmentStateAdapter(fragment) {
 
     override fun getItemCount(): Int = item.count()

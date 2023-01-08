@@ -12,35 +12,35 @@ import javax.inject.Inject
 
 class BrodRemoteDataSourceImpl @Inject constructor(
     private val apiService: NetworkApiService
-) : BroadRemoteDataSource, SafeApi() {
+) : BroadRemoteDataSource {
+
+    private val safeApi = SafeApi()
 
     override suspend fun fetchBroadList(
         categoryName: String,
         pageNumber: Int
-    ): ResultWrapper<List<Broad>> = getSafe(
-        remoteFetch = {
-            apiService.fetchBroadList(
-                categoryName = categoryName,
-                pageNumber = pageNumber
-            )
-        },
-        mapping = { response ->
+    ): ResultWrapper<List<Broad>> = safeApi.getSafe(remoteFetch = {
+        apiService.fetchBroadList(
+            categoryName = categoryName,
+            pageNumber = pageNumber
+        )
+    }, mapping = { response ->
             response.broad.map {
                 ConvertMapper<BroadData, Broad>()(
                     it
                 )
             }
-        }
-    )
+        })
 
-    override suspend fun fetchBrandCategoryList(): ResultWrapper<List<BroadCategory>> = getSafe(
-        remoteFetch = { apiService.fetchBroadCategoryList() },
-        mapping = { response ->
-            response.categoryList.map {
-                ConvertMapper<BroadCategoryData, BroadCategory>()(
-                    it
-                )
+    override suspend fun fetchBrandCategoryList(): ResultWrapper<List<BroadCategory>> =
+        safeApi.getSafe(
+            remoteFetch = { apiService.fetchBroadCategoryList() },
+            mapping = { response ->
+                response.categoryList.map {
+                    ConvertMapper<BroadCategoryData, BroadCategory>()(
+                        it
+                    )
+                }
             }
-        }
-    )
+        )
 }

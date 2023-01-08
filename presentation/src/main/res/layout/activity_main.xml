@@ -14,6 +14,7 @@
             android:layout_height="wrap_content"
             android:background="?attr/colorPrimary"
             android:theme="@style/AfreecaTV.Actionbar"
+            app:title="@string/appbar_basic_title"
             app:layout_constraintTop_toTopOf="parent"
             app:titleTextAppearance="@style/AfreecaTV_TextHeadLine24.White" />
 

@@ -28,10 +28,11 @@
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/iv_thumbnail"
             android:layout_width="0dp"
-            android:layout_height="100dp"
+            android:layout_height="0dp"
             android:contentDescription="@string/home_broad_thumbnail"
             android:scaleType="centerCrop"
             app:imageUrl="@{broad.thumbnail}"
+            app:layout_constraintDimensionRatio="H, 480:270"
             app:layout_constraintEnd_toEndOf="@id/guideline_half"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
