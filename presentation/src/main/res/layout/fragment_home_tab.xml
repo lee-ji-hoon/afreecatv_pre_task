@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="invisible"
-            app:constraint_referenced_ids="lottie,tv_empty_result" />
+            app:constraint_referenced_ids="lottie,tv_error_message" />
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/lottie"
@@ -34,10 +34,10 @@
             app:lottie_rawRes="@raw/lottie_empty_result" />
 
         <TextView
-            android:id="@+id/tv_empty_result"
+            android:id="@+id/tv_error_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/category_empty_result"
+            tools:text="@string/category_empty_result"
             android:textAppearance="@style/AfreecaTV_TextMedium16"
             app:layout_constraintBottom_toTopOf="@id/lottie"
             app:layout_constraintEnd_toEndOf="parent"
