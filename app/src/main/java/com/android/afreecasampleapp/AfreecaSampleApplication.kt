@@ -5,7 +5,7 @@ import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
 
 @HiltAndroidApp
-class BoostSearchApplication : Application() {
+class AfreecaSampleApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
