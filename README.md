@@ -14,7 +14,7 @@ API KEY를 local.properties 에서 관리
 
 |Configuration Changed|NetWork Error|방송목록 존재하지 않을 때|
 |---|---|---|
-|![컨피규레이션체인지](https://user-images.githubusercontent.com/53300830/211177335-530e019e-26fc-4cc5-9421-947b88be1403.gif)|![네트워크끊겼을때](https://user-images.githubusercontent.com/53300830/211177299-00543d2a-6949-4fed-892c-325a15834235.gif)|<img src="https://user-images.githubusercontent.com/53300830/211177352-f9b940cd-9613-458c-93b4-5a63fa5cccb9.jpg" height="700">|
+|![컨피규레이션체인지](https://user-images.githubusercontent.com/53300830/211177335-530e019e-26fc-4cc5-9421-947b88be1403.gif)|![네트워크끊겼을때](https://user-images.githubusercontent.com/53300830/211177299-00543d2a-6949-4fed-892c-325a15834235.gif)|<img src="https://user-images.githubusercontent.com/53300830/211177352-f9b940cd-9613-458c-93b4-5a63fa5cccb9.jpg" width="300" height="700">|
 
 |Popup Menu|가로 모드|
 |---|---|
