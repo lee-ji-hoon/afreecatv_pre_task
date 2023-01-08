@@ -63,11 +63,14 @@ class BroadTabFragment : BaseFragment<FragmentHomeTabBinding>(R.layout.fragment_
                         showSnackBar(getString(state.message))
                         showProgressbar(false)
                     }
-                    is UiState.NetworkFailure -> showLottie(R.string.error_network)
+                    is UiState.NetworkFailure -> showLottie(R.string.error_network, true)
                     is UiState.Loading -> showProgressbar(true)
-                    is UiState.Success<*> -> showProgressbar(false)
+                    is UiState.Success<*> -> {
+                        showLottie(visible = false)
+                        showProgressbar(false)
+                    }
                     is UiState.EmptyResult -> {
-                        showLottie(R.string.category_empty_result)
+                        showLottie(R.string.category_empty_result, true)
                         showProgressbar(false)
                     }
                 }
@@ -108,10 +111,14 @@ class BroadTabFragment : BaseFragment<FragmentHomeTabBinding>(R.layout.fragment_
         }
     }
 
-    private fun showLottie(@StringRes message: Int) {
-        binding.tvErrorMessage.text = getString(message)
-        binding.groupEmptyResult.isVisible = true
-        binding.lottie.playAnimation()
+    private fun showLottie(@StringRes message: Int? = null, visible: Boolean) {
+        binding.tvErrorMessage.text = message?.let { getString(it) }
+        binding.groupEmptyResult.isVisible = visible
+        if (visible) {
+            binding.lottie.playAnimation()
+        } else {
+            binding.lottie.cancelAnimation()
+        }
     }
 
     private fun showProgressbar(visible: Boolean) {
