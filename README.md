@@ -12,9 +12,13 @@ API KEY를 local.properties 에서 관리
 |---|---|---|
 |![목록](https://user-images.githubusercontent.com/53300830/211177537-6c63bef0-2189-4795-9833-c7df7f11e882.gif)|![상세화면](https://user-images.githubusercontent.com/53300830/211176939-4edeed5b-df16-4d24-a8ec-164b2c9d434d.gif)|![새로고침](https://user-images.githubusercontent.com/53300830/211177530-5d36dd07-f3f8-45ca-970c-6879f193a703.gif)|
 
-|Configuration Changed|NetWork Error|Popup Menu|방송목록 존재하지 않을 때|
-|---|---|---|---|
-|![컨피규레이션체인지](https://user-images.githubusercontent.com/53300830/211177335-530e019e-26fc-4cc5-9421-947b88be1403.gif)|![네트워크끊겼을때](https://user-images.githubusercontent.com/53300830/211177299-00543d2a-6949-4fed-892c-325a15834235.gif)|![popup메뉴](https://user-images.githubusercontent.com/53300830/211178035-1a8fd28e-fdd4-4f74-959a-8f376319fcd9.gif)|<img src="https://user-images.githubusercontent.com/53300830/211177352-f9b940cd-9613-458c-93b4-5a63fa5cccb9.jpg" height="700">|
+|Configuration Changed|NetWork Error|방송목록 존재하지 않을 때|
+|---|---|---|
+|![컨피규레이션체인지](https://user-images.githubusercontent.com/53300830/211177335-530e019e-26fc-4cc5-9421-947b88be1403.gif)|![네트워크끊겼을때](https://user-images.githubusercontent.com/53300830/211177299-00543d2a-6949-4fed-892c-325a15834235.gif)|<img src="https://user-images.githubusercontent.com/53300830/211177352-f9b940cd-9613-458c-93b4-5a63fa5cccb9.jpg" width="300" height="700">|
+
+|Popup Menu|가로 모드|
+|---|---|
+|![popup메뉴](https://user-images.githubusercontent.com/53300830/211178035-1a8fd28e-fdd4-4f74-959a-8f376319fcd9.gif)|![ezgif com-gif-maker](https://user-images.githubusercontent.com/53300830/211178292-a11f6d57-9051-491f-b596-ea5a895f86cd.gif)|
 
 ## 📋 구조
 
@@ -37,7 +41,7 @@ API KEY를 local.properties 에서 관리
 
 ### 클린 아키텍처 적용
 
-<img src="https://user-images.githubusercontent.com/53300830/211145345-4a32b7e6-82d6-4c15-9fe2-e77f7293ed44.png" width="600" height="300">
+<img src="https://user-images.githubusercontent.com/53300830/211145345-4a32b7e6-82d6-4c15-9fe2-e77f7293ed44.png" width="800" height="400">
 
 ## ✍️ UnitTest 작성
 
@@ -133,7 +137,7 @@ fun fetchBroadFailedNetWorkError() = runTest {
 |<img width="315" alt="image" src="https://user-images.githubusercontent.com/53300830/211145761-ea614dbb-7d92-43fa-a2f2-ddecc48c6b2b.png">|<img width="313" alt="image" src="https://user-images.githubusercontent.com/53300830/211145754-f159ab78-78f9-4ce3-a70d-8caca6e0bf69.png">|
 
 
-## 🤔 성능 관련해서 고민했던 내용
+## 🤔 고민했던 내용들
 
 ### RecylcerView 페이지 요청 시점
 
