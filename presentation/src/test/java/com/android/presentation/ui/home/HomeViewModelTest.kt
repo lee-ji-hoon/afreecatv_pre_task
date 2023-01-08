@@ -70,13 +70,12 @@ class HomeViewModelTest {
             // then
             assertThat(cancelAndConsumeRemainingEvents()).containsExactly(
                 Event.Item(UiState.Loading),
-                Event.Item(UiState.Failure(NETWORK_ERROR_STRING_RES)) // 네트워크 에러 StringRes 값
+                Event.Item(UiState.NetworkFailure) // 네트워크 에러 StringRes 값
             )
         }
     }
 
     companion object {
-        private const val NETWORK_ERROR_STRING_RES = 2132017215
         private val testCategory = listOf(BroadCategory("name", "number", emptyList()))
     }
 }

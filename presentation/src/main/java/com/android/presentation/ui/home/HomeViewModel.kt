@@ -3,8 +3,9 @@ package com.android.presentation.ui.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.android.domain.common.succeeded
-import com.android.domain.model.BroadCategory
 import com.android.domain.usecase.FetchBroadCategoryUseCase
+import com.android.presentation.model.BroadCategoryUiModel
+import com.android.presentation.model.toUiModel
 import com.android.presentation.ui.common.MutableEventFlow
 import com.android.presentation.ui.common.UiState
 import com.android.presentation.ui.common.asEventFlow
@@ -20,7 +21,7 @@ class HomeViewModel @Inject constructor(
     private val fetchBroadCategoryUseCase: FetchBroadCategoryUseCase
 ) : ViewModel() {
 
-    private val _category = MutableStateFlow<List<BroadCategory>?>(null)
+    private val _category = MutableStateFlow<List<BroadCategoryUiModel>?>(null)
     val category = _category.asStateFlow()
 
     private val _uiState: MutableEventFlow<UiState> = MutableEventFlow()
@@ -32,7 +33,7 @@ class HomeViewModel @Inject constructor(
             val result = fetchBroadCategoryUseCase()
             if (result.succeeded) {
                 _uiState.emit(UiState.Success(Unit))
-                _category.value = result.data
+                _category.value = result.data?.map { it.toUiModel() }
             } else {
                 _uiState.emit(result.manageError())
             }
