@@ -5,7 +5,7 @@ import com.android.domain.common.ResultWrapper
 import com.android.safecall.error.ErrorHandlerImpl
 import retrofit2.Response
 
-abstract class SafeApi : ErrorHandlerImpl() {
+class SafeApi : ErrorHandlerImpl() {
 
     override suspend fun <ResultType, RequestType> getSafe(
         remoteFetch: suspend () -> Response<RequestType>,
