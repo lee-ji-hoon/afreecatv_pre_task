@@ -2,7 +2,7 @@ package com.android.presentation.ui.home
 
 import android.os.Bundle
 import android.view.View
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import com.android.presentation.R
 import com.android.presentation.databinding.FragmentHomeBinding
 import com.android.presentation.model.BroadCategoryUiModel
@@ -18,7 +18,7 @@ import kotlin.math.roundToInt
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
-    private val viewModel: HomeViewModel by activityViewModels()
+    private val viewModel: HomeViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
